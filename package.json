@@ -1,0 +1,23 @@
+{
+  "name": "playsem-home",
+  "version": "1.0.0",
+  "description": "Host and join parties and keep shuffling sick songs.",
+  "repository": "https://github.com/AmirSavand/playsem-home",
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "serve": "gulp serve",
+    "build": "gulp build",
+    "deploy": "gulp deploy"
+  },
+  "devDependencies": {
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-connect": "^5.7.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify-es": "^2.0.0"
+  },
+  "dependencies": {}
+}
