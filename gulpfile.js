@@ -2,6 +2,7 @@
 
 const csso = require('gulp-csso');
 const del = require('del');
+const file = require('gulp-file');
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
 const sass = require('gulp-sass');
@@ -12,13 +13,13 @@ const ghpages = require('gulp-gh-pages');
 // CLEAN
 
 gulp.task('clean', () => {
-  return del(['dist', 'serve']);
+  return del(['dist', 'serve', 'deploy']);
 });
 
 // BUILD
 
 gulp.task('build:styles', () => {
-  return gulp.src('./src/asset/**/*.scss')
+  return gulp.src('src/asset/**/*.scss')
     // Compile SASS files
     .pipe(sass({
       outputStyle: 'nested',
@@ -29,27 +30,31 @@ gulp.task('build:styles', () => {
     // Minify the file
     .pipe(csso())
     // Output
-    .pipe(gulp.dest('./dist/asset'));
+    .pipe(gulp.dest('dist/asset'));
 });
 
 gulp.task('build:scripts', () => {
-  return gulp.src('./src/asset/**/*.js')
+  return gulp.src('src/asset/**/*.js')
     // Minify the file
     .pipe(uglify())
     // Output
-    .pipe(gulp.dest('./dist/asset'));
+    .pipe(gulp.dest('dist/asset'));
 });
 
 gulp.task('build:html', () => {
-  return gulp.src(['./src/**/*.html'])
+  return gulp.src(['src/**/*.html'])
     .pipe(htmlmin({
       collapseWhitespace: true,
       removeComments: true,
     }))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build', gulp.series('clean', 'build:styles', 'build:scripts', 'build:html'));
+gulp.task('build:images', () => {
+  return gulp.src(['src/asset/img/**/*']).pipe(gulp.dest('dist/asset/img'));
+});
+
+gulp.task('build', gulp.series('clean', 'build:styles', 'build:scripts', 'build:html', 'build:images'));
 
 // SERVE
 
@@ -61,7 +66,7 @@ gulp.task('serve:styles', () => {
       includePaths: ['.'],
       onError: console.error.bind(console, 'Sass error:'),
     }))
-    .pipe(gulp.dest('./serve/asset/'));
+    .pipe(gulp.dest('serve/asset/'));
 });
 
 gulp.task('serve:copy', () => {
@@ -88,8 +93,16 @@ gulp.task('serve', gulp.series('clean', 'serve:copy', 'serve:styles', 'serve:rel
 
 // DEPLOY
 
-gulp.task('deploy', gulp.series('build', () => {
+gulp.task('deploy:clean', gulp.series('build', () => {
   return gulp.src('dist/**/*').pipe(ghpages());
+}));
+
+gulp.task('deploy', gulp.series('build', () => {
+  return gulp.src('dist/**/*')
+    .pipe(file('CNAME', 'www.playsem.com'))
+    .pipe(ghpages({
+      cacheDir: 'deploy',
+    }));
 }));
 
 // DEFAULT
