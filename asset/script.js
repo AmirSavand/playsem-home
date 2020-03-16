@@ -1,1 +1,1 @@
-document.cookie.match(/^(.*;)?\s*token\s*=\s*[^;]+(.*)?$/)&&(location.href="https://www.playsem.com/");
+document.cookie.match(/^(.*;)?\s*token\s*=\s*[^;]+(.*)?$/)&&(location.href="https://app.playsem.com/");
