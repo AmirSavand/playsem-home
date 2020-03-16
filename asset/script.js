@@ -1,1 +1,1 @@
-window.addEventListener("load",()=>{console.log("Welcome to PlaysEM!")});
+document.cookie.match(/^(.*;)?\s*token\s*=\s*[^;]+(.*)?$/)&&(location.href="https://www.playsem.com/");
