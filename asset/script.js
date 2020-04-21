@@ -1,1 +1,1 @@
-document.cookie.match(/^(.*;)?\s*token\s*=\s*[^;]+(.*)?$/)&&(location.href="https://app.playsem.com/");
+document.cookie.match(/^(.*;)?\s*token\s*=\s*[^;]+(.*)?$/)&&(location.href="https://app.playsem.com/");for(const e of["orientationchange","load","resize"])window.addEventListener(e,()=>{document.querySelectorAll("#main").forEach(e=>{console.log(document.getElementsByTagName("header")[0].clientHeight);const t=window.innerHeight-document.getElementsByTagName("header")[0].clientHeight;e.style.minHeight=t+"px"})});
