@@ -1,6 +1,10 @@
 $primary: #ff1493;
 $dark: #222228;
 
+$border-radius: 3px;
+
+$link-hover-decoration: none;
+
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
 
@@ -10,10 +14,10 @@ $dark: #222228;
 @import "node_modules/bootstrap/scss/type";
 //@import "node_modules/bootstrap/scss/images";
 //@import "node_modules/bootstrap/scss/code";
-//@import "node_modules/bootstrap/scss/grid";
+@import "node_modules/bootstrap/scss/grid";
 //@import "node_modules/bootstrap/scss/tables";
 //@import "node_modules/bootstrap/scss/forms";
-//@import "node_modules/bootstrap/scss/buttons";
+@import "node_modules/bootstrap/scss/buttons";
 //@import "node_modules/bootstrap/scss/transitions";
 //@import "node_modules/bootstrap/scss/dropdown";
 //@import "node_modules/bootstrap/scss/button-group";
@@ -40,18 +44,19 @@ $dark: #222228;
 @import "node_modules/bootstrap/scss/utilities";
 //@import "node_modules/bootstrap/scss/print";
 
-html, body {
-  height: 100%;
+img {
+  max-width: 100%;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+a.text-white-50:hover,
+a.text-white-50:focus {
+  color: $light !important;
+}
 
-  > * {
-    margin-bottom: map_get($spacers, 3);
-  }
+header {
+  background: linear-gradient(to left, #fc6b1d, $primary);
+}
+
+#main {
+  background: linear-gradient(to left, #fc6b1d, $primary);
 }
